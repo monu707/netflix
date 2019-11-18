@@ -1,0 +1,499 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Barriecito&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Barriecito|PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300|Josefin+Slab&display=swap');
+@font-face {
+     font-family: 'Material Icons';
+     font-style: normal;
+     font-weight: 400;
+     src: local('Material Icons'), local('MaterialIcons-Regular');
+}
+p.title {
+     font-size: 22px;
+     color: #fff;
+     margin-top: 70px;
+     margin-bottom: 50px;
+     font-family: 'Source Sans Pro', sans-serif;
+     color: #fff;
+     margin-left: 10px;
+}
+body {
+     overflow-x: hidden;
+     margin: 0;
+     background: #222;
+}
+body h1 {
+     text-align: center;
+     font-size: 27px;
+     line-height: 27px;
+     color: #fff;
+     letter-spacing: 10px;
+     font-weight: 300;
+     font-family: 'Source Sans Pro', sans-serif;
+}
+.s_container {
+     position: relative;
+     z-index: 2;
+     max-width: 1300px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+.slider {
+     transition: all 0.2s linear;
+     position: relative;
+     margin-top: 0;
+     margin: 0;
+     top: 0px;
+     left: 0;
+     width: 3000vw;
+     display: table;
+}
+.slider .element {
+     transform: scale(1);
+     background-color: rgba(0, 0, 0, 0.9);
+     position: relative;
+     display: inline-block;
+     margin: 0 1px;
+     vertical-align: top;
+     width: 240px;
+     height: 135px;
+     background: #101010;
+     cursor: pointer;
+     transition: all 0.2s linear;
+}
+.slider .element .right_column {
+     position: absolute;
+     z-index: 9;
+     right: 0;
+     height: calc(100% - 10px);
+     top: 0;
+     width: 30%;
+     max-width: 32px;
+}
+.slider .element .right_column .audio {
+     display: none;
+     position: relative;
+     margin: 1px 0px;
+     width: 48px;
+     height: 48px;
+     right: 20px;
+}
+.slider .element .right_column .audio.mute::after {
+     width: 29.867904px;
+}
+.slider .element .right_column .audio::after {
+     transition: 200ms linear;
+     content: "";
+     z-index: 2;
+     position: absolute;
+     width: 0;
+     height: 1.2px;
+     background: #000;
+     transform: rotate(135deg);
+     transform-origin: bottom left;
+     left: 35px;
+     top: 12px;
+}
+.slider .element span {
+     position: absolute;
+     left: 50%;
+     display: none;
+     top: 100%;
+     margin-left: -60px;
+     z-index: 99999;
+}
+.slider .element span:after {
+     content: "";
+     position: absolute;
+     width: 0;
+     height: 0;
+     border-width: 10px;
+     z-index: 9999;
+     border-style: solid;
+     border-color: #fff transparent transparent transparent;
+     top: 4px;
+     left: 50px;
+}
+.slider .element .title {
+     position: absolute;
+     bottom: 20px;
+     font-family: 'PT Sans', sans-serif;
+     letter-spacing: 140%;
+     width: 100%;
+     left: 0;
+     height: 20px;
+     opacity: 0;
+     z-index: 9;
+     line-height: 22px;
+     color: #fff;
+     text-align: center;
+     font-size: 15px;
+}
+.slider .element .description {
+     position: absolute;
+     width: 100%;
+     height: 20px;
+     bottom: 0;
+     z-index: 2;
+     opacity: 0;
+     filter: invert(100%);
+     background: url(https://i.ibb.co/XxkBhZd/iconfinder-basics-08-296826.png) no-repeat center center;
+     background-size: 16px 16px;
+}
+@media screen and (max-width: 400px) {
+     .slider .element {
+         width: 120px;
+         height: 120px;
+    }
+}
+.slider .element .video_container {
+     display: block;
+     position: absolute;
+     width: 100%;
+     right: 0;
+     transition: none;
+     top: 0;
+     left: 0;
+     z-index: 1;
+     height: 100%;
+     background: #101010;
+}
+.slider .element .video_container .v_preloader {
+     position: absolute;
+     z-index: 3;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     display: none;
+     background: url(https://cdn.dribbble.com/users/1148781/screenshots/3233207/bold-preloader.gif) no-repeat center center #101010;
+     background-size: contain;
+}
+.slider .element .video_container::after {
+     position: absolute;
+     z-index: 2;
+     content: '';
+     width: 100%;
+     height: 100%;
+     bottom: 0;
+     left: 0;
+     box-shadow: inset 0px -34px 41px 10px rgba(0, 0, 0, 0);
+     transition: 100ms linear;
+     background: rgba(0, 0, 0, 0.2);
+}
+.slider .element .video_container video {
+     object-fit: cover;
+     appearance: none;
+     width: 100%;
+     height: 100%;
+     opacity: 1;
+     z-index: -1;
+     position: absolute;
+}
+.slider .element.focus, .slider .element.firstFocus {
+     z-index: 9999;
+     box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 0.3);
+     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.slider .element.focus .video_container::after, .slider .element.firstFocus .video_container::after {
+     box-shadow: inset 0px -34px 41px 10px rgba(0, 0, 0, 0.95);
+}
+.slider .element.focus .title, .slider .element.firstFocus .title {
+     opacity: 1;
+     filter: invert(100%);
+     color: #000;
+}
+.slider .element.focus .description, .slider .element.firstFocus .description {
+     opacity: 0.7;
+}
+.slider .element.focus .description:hover, .slider .element.firstFocus .description:hover {
+     transform: scale(1.6);
+     opacity: 1;
+     transition: 0.2s linear;
+}
+.slider .element.focus .video_container, .slider .element.firstFocus .video_container {
+     background: rgba(0, 0, 0, 0.2);
+     transition: 0.2s linear;
+}
+.slider .element.focus .video_container::after, .slider .element.firstFocus .video_container::after {
+     transition: all 200ms;
+}
+.slider .element.n_focus {
+     transform: scale(1);
+     transition: 0.2s linear;
+     padding: 10px;
+     border: 5px solid #fff;
+}
+.slider .element.n_focus .video_container::after {
+     background: rgba(0, 0, 0, 0);
+     transition: 0.2s linear;
+}
+.slider .element.n_focus span {
+     display: block;
+}
+.slider .element.focus, .slider .element.pfocus, .slider .element.fpfocus, .slider .element.firstFocus {
+     transition-delay: 200ms !important;
+}
+.slider .element.focus {
+     transform: scale(1.5);
+}
+@media screen and (max-width: 550px) {
+     .slider .element.focus {
+         transform: scale(1.5) translateX(10px);
+         transform-origin: center right;
+    }
+}
+.slider .element.firstFocus {
+     transform: scale(1.5);
+     transform-style: preserve-3d;
+}
+@media screen and (max-width: 550px) {
+     .slider .element.firstFocus {
+         transform: scale(1.5) translateX(-4px);
+         transform-origin: center left;
+    }
+}
+.after {
+     right: 0;
+}
+.after, .previous {
+     position: absolute;
+     margin-top: 0;
+     height: 100%;
+     background: #fff;
+     top: 0;
+     top: 0;
+     z-index: 99;
+     background-size: 32px 32px !important;
+     background: url(http://www.myiconfinder.com/uploads/iconsets/256-256-7e81c2f3697b91ee17fe6ed6348c232a-Arrow.png) no-repeat center center;
+     cursor: pointer;
+     opacity: 0;
+}
+.after.visible, .previous.visible {
+     opacity: 0.3 !important;
+}
+.previous {
+     left: 0 !important;
+     transform: rotate(180deg);
+}
+.s_container:hover .after {
+     opacity: 1;
+}
+.s_container:hover .previous {
+     opacity: 1;
+}
+.video_description.active {
+     display: block;
+     left: 0;
+     width: 100%;
+     z-index: 1;
+     margin-top: 0px;
+     height: 500px;
+     position: absolute;
+     background: #000;
+     transition: 60ms linear;
+     color: #fff;
+}
+.video_description.active div {
+     display: block;
+}
+.video_description {
+     height: 0;
+     z-index: -1;
+     transition: 100ms linear;
+}
+.video_description .desc_container {
+     position: relative;
+     font-size: 16px !important;
+     width: 70%;
+     line-height: 27px;
+     margin-top: 30px;
+     font-family: 'Josefin Slab', serif;
+     color: #fff;
+     background: inherit;
+     font-size: 28px;
+}
+.video_description .text_container {
+     position: relative;
+     left: 5%;
+     width: auto;
+     max-width: 55%;
+     z-index: 2;
+     height: auto;
+     top: 20%;
+     background: trasparent;
+}
+.video_description .text_container .movie_title {
+     position: relative;
+     letter-spacing: 4px;
+     line-height: 48px;
+     color: #fff;
+     font-family: 'Oswald', sans-serif;
+     font-weight: bold;
+     user-select: none;
+     font-size: 38px;
+}
+.video_description .text_container .actions_container {
+     position: relative;
+     width: 100%;
+     height: 60px;
+     margin-top: 20px;
+     /* https://google.github.io/material-design-icons/ */
+}
+.video_description .text_container .actions_container div {
+     font-family: 'Oswald', sans-serif;
+}
+.video_description .text_container .actions_container .play_button, .video_description .text_container .actions_container .my_list, .video_description .text_container .actions_container .like, .video_description .text_container .actions_container .dislike {
+     font-size: 20px;
+     vertical-align: middle;
+     text-transform: uppercase;
+}
+.video_description .text_container .actions_container .play_button, .video_description .text_container .actions_container .my_list, .video_description .text_container .actions_container .like, .video_description .text_container .actions_container .dislike {
+     cursor: pointer;
+     padding: 4px 10px;
+     user-select: none;
+     transition: 200ms linear;
+     width: auto;
+     max-width: 140px;
+     height: 50px;
+     text-align: center;
+     display: inline-block;
+     background: #e50914;
+     color: #fff;
+     margin-right: 20px;
+}
+.video_description .text_container .actions_container .play_button i, .video_description .text_container .actions_container .my_list i, .video_description .text_container .actions_container .like i, .video_description .text_container .actions_container .dislike i {
+     margin-top: -3px;
+}
+.video_description .text_container .actions_container .play_button:hover, .video_description .text_container .actions_container .my_list:hover, .video_description .text_container .actions_container .like:hover, .video_description .text_container .actions_container .dislike:hover {
+     transform: scale(1.1);
+     transition-delay: 400ms;
+}
+.video_description .text_container .actions_container .my_list, .video_description .text_container .actions_container .like, .video_description .text_container .actions_container .dislike {
+     background: #000 !important;
+     border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.video_description .text_container .actions_container .like {
+     margin-left: 15px;
+}
+.video_description .text_container .actions_container .like, .video_description .text_container .actions_container .dislike {
+     margin-right: 6px;
+     padding: 0 !important;
+     width: 48px !important;
+     height: 48px !important;
+     vertical-align: middle;
+     border-radius: 80%;
+}
+.video_description .text_container .actions_container .like i, .video_description .text_container .actions_container .dislike i {
+     font-size: 16px !important;
+     margin-top: 0px;
+     vertical-align: middle;
+}
+.video_description .text_container .actions_container .t_icon {
+     font-family: 'Material Icons';
+     font-weight: normal;
+     font-style: normal;
+     font-size: 32px;
+     display: inline-block;
+     line-height: 1;
+     display: inline-block;
+     vertical-align: bottom;
+     text-transform: none;
+     letter-spacing: normal;
+     word-wrap: normal;
+     white-space: nowrap;
+     direction: ltr;
+     /* Support for all WebKit browsers. */
+     -webkit-font-smoothing: antialiased;
+     /* Support for Safari and Chrome. */
+     text-rendering: optimizeLegibility;
+     /* Support for Firefox. */
+     -moz-osx-font-smoothing: grayscale;
+     /* Support for IE. */
+     font-feature-settings: 'liga';
+}
+.video_description .video_container {
+     position: absolute;
+     right: 0;
+     width: 75%;
+     height: 100%;
+     top: 0;
+     background: inherit;
+}
+.video_description .video_container .v_pause {
+     position: absolute;
+     bottom: 10%;
+     width: 48px;
+     height: 48px;
+     right: 10%;
+     cursor: pointer;
+     user-select: none;
+     z-index: 2;
+}
+.video_description .video_container .v_pause.mute::after {
+     width: 63.808704px;
+}
+.video_description .video_container .v_pause::after {
+     transition: 200ms linear;
+     content: "";
+     z-index: 2;
+     position: absolute;
+     width: 0;
+     height: 3.2px;
+     background: #000;
+     transform: rotate(135deg);
+     transform-origin: bottom left;
+     left: calc(100% - 8px);
+     top: 0;
+}
+.video_description .video_container video {
+     object-fit: cover;
+     appearance: none;
+     width: 100%;
+     height: 100%;
+     opacity: 1;
+     z-index: 0;
+     position: absolute;
+}
+.video_description .video_container::after {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     content: "";
+     background: rgba(0, 0, 0, 0.3);
+     z-index: 1;
+     box-shadow: inset 50px -34px 61px 10px rgba(0, 0, 0, 0.95);
+}
+.video_description div {
+     display: none;
+}
+.video_description .close {
+     position: absolute;
+     top: 20px;
+     right: 20px;
+     z-index: 9;
+     cursor: pointer;
+     color: #fff;
+     font-family: 'Oswald', sans-serif;
+     font-size: 28px;
+     outline: none;
+}
+.video_description .close:hover {
+     transform: scale(1.2);
+}
+.top_container {
+     position: relative;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: auto;
+}
+.footer {
+     position: relative;
+     margin-top: 50px;
+     height: 80px;
+}
